@@ -13,7 +13,7 @@ interface Props extends WithAuthenticatorProps {
   isPassedToWithAuthenticator: boolean;
 }
 
-export function Home({ isPassedToWithAuthenticator, signOut, user }: Props) {
+function Home({ isPassedToWithAuthenticator, signOut, user }: Props) {
   return (
     <main className={styles.main}>
       <h1>Hello {user?.username}</h1>
