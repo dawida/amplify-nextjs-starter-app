@@ -2,21 +2,19 @@
 
 import Image from 'next/image'
 import styles from './page.module.css'
-
+import { Amplify } from "aws-amplify";
 import {
   WithAuthenticatorProps,
   withAuthenticator,
 } from "@aws-amplify/ui-react";
 import '@aws-amplify/ui-react/styles.css';
+import amplifyconfiguration from "@/amplifyconfiguration.json";
 
-interface Props extends WithAuthenticatorProps {
-  isPassedToWithAuthenticator: boolean;
-}
+Amplify.configure(amplifyconfiguration);
 
-function Home({ isPassedToWithAuthenticator, signOut, user }: Props) {
+function Home() {
   return (
     <main className={styles.main}>
-      <h1>Hello {user?.username}</h1>
       <div className={styles.description}>
         <p>
           Get started by editing&nbsp;
@@ -94,7 +92,6 @@ function Home({ isPassedToWithAuthenticator, signOut, user }: Props) {
           </p>
         </a>
       </div>
-      <button onClick={signOut}>Sign out</button>
     </main>
   )
 }
