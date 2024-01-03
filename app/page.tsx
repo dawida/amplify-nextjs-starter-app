@@ -1,9 +1,22 @@
+'use client';
+
 import Image from 'next/image'
 import styles from './page.module.css'
 
-export default function Home() {
+import {
+  WithAuthenticatorProps,
+  withAuthenticator,
+} from "@aws-amplify/ui-react";
+import '@aws-amplify/ui-react/styles.css';
+
+interface Props extends WithAuthenticatorProps {
+  isPassedToWithAuthenticator: boolean;
+}
+
+export function Home({ isPassedToWithAuthenticator, signOut, user }: Props) {
   return (
     <main className={styles.main}>
+      <h1>Hello {user?.username}</h1>
       <div className={styles.description}>
         <p>
           Get started by editing&nbsp;
@@ -81,6 +94,9 @@ export default function Home() {
           </p>
         </a>
       </div>
+      <button onClick={signOut}>Sign out</button>
     </main>
   )
 }
+
+export default withAuthenticator(Home);
